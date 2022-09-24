@@ -30,6 +30,11 @@ class Post extends Model
     //     return Storage::url('images/posts/' . $this->image);
     // }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function getImageUrlAttribute()
     {
         // return Storage::url('images/posts/' . $this->image);

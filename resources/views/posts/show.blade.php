@@ -51,12 +51,22 @@
             @endcan
             @can('delete', $post)
                 <form action="{{ route('posts.destroy', $post) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="submit" value="削除" onclick="if(!confirm('削除しますか？')){return false};"
-                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" value="削除" onclick="if(!confirm('削除しますか？')){return false};"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
                 </form>
             @endcan
         </div>
+
+        {{-- @auth 認証しているときだけ --}}
+        @auth
+            <hr class="my-4">
+
+            <div class="flex justify-end">
+                <a href="{{ route('posts.comments.create', $post) }}"
+                    class="bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block">コメント登録</a>
+            </div>
+        @endauth
     </div>
 </x-app-layout>
